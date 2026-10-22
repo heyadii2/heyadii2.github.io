@@ -73,8 +73,7 @@ nav a.cta:hover{background:var(--wine-dark);transform:translateY(-1px)}
 
 /* ---------- hero ---------- */
 .hero{padding:64px 0 30px;text-align:center;position:relative}
-.hero .kicker{font-family:'Helvetica Neue',Arial,sans-serif;letter-spacing:.35em;text-transform:uppercase;font-size:.75rem;color:var(--ink-soft);font-weight:700}
-.portrait-wrap{position:relative;z-index:2;width:150px;height:150px;margin:30px auto -75px}
+.portrait-wrap{position:relative;z-index:2;width:190px;height:190px;margin:36px auto -95px}
 .portrait-ring{
   position:absolute;inset:-9px;border-radius:50%;
   background:conic-gradient(from 0deg,var(--wine),var(--wine-bright),rgba(255,255,255,.85),var(--wine));
@@ -84,7 +83,7 @@ nav a.cta:hover{background:var(--wine-dark);transform:translateY(-1px)}
 .portrait-monogram{
   position:absolute;inset:0;border-radius:50%;background:var(--wine);color:#fff;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:2.4rem;
+  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:3rem;
 }
 .portrait-wrap img{
   position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;
@@ -93,7 +92,7 @@ nav a.cta:hover{background:var(--wine-dark);transform:translateY(-1px)}
 /* frosted-glass hero card (reference look) */
 .glass-card{
   position:relative;max-width:880px;margin:0 auto;text-align:center;
-  padding:96px clamp(22px,5vw,56px) 46px;border-radius:28px;
+  padding:122px clamp(22px,5vw,56px) 48px;border-radius:28px;z-index:2;
   background:linear-gradient(155deg,rgba(255,255,255,.13),rgba(255,255,255,.045) 55%,rgba(215,38,56,.16));
   backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);
   border:1px solid var(--glass-brd);
@@ -104,29 +103,26 @@ nav a.cta:hover{background:var(--wine-dark);transform:translateY(-1px)}
   background:linear-gradient(180deg,rgba(255,255,255,.14),transparent 32%);
 }
 .glass-card>*{position:relative;z-index:1}
-.gc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;text-align:left}
-.gc-top .gc-role{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.88rem;line-height:1.4;color:var(--ink-soft)}
-.gc-top .gc-role strong{display:block;font-weight:800;font-size:.98rem;color:#fff}
-.gc-top .gc-create{
-  font-style:italic;font-size:.98rem;color:var(--ink);text-decoration:none;white-space:nowrap;
-  border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px;transition:all .25s ease;
-}
-.gc-top .gc-create:hover{color:#fff;border-color:var(--accent);text-shadow:0 0 14px rgba(255,90,110,.7)}
+/* animated ambient glows behind the hero glass card (slow drift + pulse) */
+.hero-glow{position:absolute;inset:-50px -12% -40px;z-index:0;pointer-events:none}
+.hero-glow i{position:absolute;border-radius:50%;filter:blur(58px);will-change:transform,opacity}
+.hero-glow i:nth-child(1){width:480px;height:480px;left:-5%;top:-80px;background:radial-gradient(circle,rgba(215,38,56,.55),transparent 65%);animation:glow-drift-a 16s ease-in-out infinite alternate}
+.hero-glow i:nth-child(2){width:430px;height:430px;right:-4%;top:4%;background:radial-gradient(circle,rgba(238,65,86,.5),transparent 65%);animation:glow-drift-b 21s ease-in-out infinite alternate}
+.hero-glow i:nth-child(3){width:390px;height:390px;left:33%;bottom:-170px;background:radial-gradient(circle,rgba(167,24,41,.55),transparent 65%);animation:glow-pulse 12s ease-in-out infinite}
+@keyframes glow-drift-a{from{transform:translate(0,0) scale(1)}to{transform:translate(72px,46px) scale(1.16)}}
+@keyframes glow-drift-b{from{transform:translate(0,0) scale(1.1)}to{transform:translate(-66px,54px) scale(.94)}}
+@keyframes glow-pulse{0%,100%{transform:scale(1);opacity:.72}50%{transform:scale(1.18);opacity:1}}
 .hero h1{
-  font-size:clamp(3rem,10vw,6.2rem);font-weight:900;line-height:.98;letter-spacing:-.01em;color:#fff;margin-top:26px;
+  font-size:clamp(3rem,10vw,6.2rem);font-weight:900;line-height:.98;letter-spacing:-.01em;color:#fff;margin-top:2px;
 }
 .hero h1 .ch{display:inline-block}
 .hero h1 .accent{color:var(--accent)}
-.hero .role{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;letter-spacing:.28em;text-transform:uppercase;font-size:clamp(.8rem,2.4vw,1rem);color:var(--accent);margin-top:14px}
-.hero .intro{max-width:680px;margin:22px auto 0;font-size:1.13rem;color:var(--ink-soft)}
-.hero .intro strong{color:#fff}
-.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
 .btn-ghost{
   background:rgba(255,255,255,.08) !important;border:1px solid rgba(255,255,255,.35) !important;color:#fff !important;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
 .btn-ghost:hover{background:rgba(255,255,255,.16) !important;box-shadow:0 0 20px rgba(255,90,110,.35)}
-.hero .chips{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .chip{
   font-family:'Helvetica Neue',Arial,sans-serif;font-size:.82rem;font-weight:600;
   border:1px solid rgba(255,255,255,.35);color:var(--ink);border-radius:999px;padding:7px 16px;
@@ -186,6 +182,44 @@ section{padding:74px 0 10px}
 }
 .work-slot.open .work-hint{max-height:120px;margin-top:12px}
 .work-hint a{color:#fff;font-weight:700}
+
+/* ---------- short videos (auto-sliding 9:16 strip) ---------- */
+.shorts-viewport{
+  margin-top:42px;overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+}
+.shorts-track{display:flex;gap:18px;width:max-content;padding:6px 22px 16px;animation:shorts-slide 38s linear infinite;will-change:transform}
+.shorts-viewport:hover .shorts-track{animation-play-state:paused}
+@keyframes shorts-slide{to{transform:translateX(-50%)}}
+.short-card{
+  --mx:50%;--my:50%;
+  position:relative;flex:none;width:200px;aspect-ratio:9/16;border-radius:20px;overflow:hidden;
+  border:1px solid var(--glass-brd);color:#fff;cursor:pointer;
+  background:linear-gradient(165deg,rgba(215,38,56,.32),rgba(255,255,255,.05) 62%);
+  backdrop-filter:blur(12px) saturate(140%);-webkit-backdrop-filter:blur(12px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 18px 40px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:18px;
+}
+.short-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(300px circle at var(--mx) var(--my),rgba(255,110,130,.22),transparent 65%);
+  opacity:0;transition:opacity .3s ease;pointer-events:none;
+}
+.short-card:hover::before{opacity:1}
+.short-card .play{
+  position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;color:#fff;transition:all .25s ease;
+}
+.short-card:hover .play{background:var(--wine);border-color:var(--wine);box-shadow:0 0 18px rgba(238,65,86,.8)}
+.short-card .slabel{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.short-card .sname{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.35rem;margin-top:5px;line-height:1.1}
+.short-card .soon{
+  display:inline-block;margin-top:11px;align-self:flex-start;
+  font-family:'Helvetica Neue',Arial,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;
+  background:var(--wine);color:#fff;border-radius:999px;padding:5px 12px;
+}
 
 /* ---------- about ---------- */
 .about-body{max-width:820px;margin:34px auto 0;font-size:1.08rem;color:var(--ink-soft)}
@@ -292,17 +326,6 @@ footer a{color:#fff;text-decoration:none}
 footer a:hover{text-decoration:underline}
 footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
 
-/* ---------- availability badge ---------- */
-.avail-wrap{margin-top:26px;text-align:center}
-.avail-badge{
-  display:inline-flex;align-items:center;gap:9px;
-  font-family:'Helvetica Neue',Arial,sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.04em;color:#fff;
-  border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 18px;
-  background:rgba(255,255,255,.07);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
-}
-.avail-badge .dot{width:9px;height:9px;border-radius:50%;background:#2ee06f;flex:none;animation:pulse-dot 1.8s ease-out infinite}
-@keyframes pulse-dot{0%{box-shadow:0 0 0 0 rgba(46,224,111,.55)}70%{box-shadow:0 0 0 9px rgba(46,224,111,0)}100%{box-shadow:0 0 0 0 rgba(46,224,111,0)}}
 
 /* ---------- tools strip ---------- */
 .tools{padding:40px 0 4px;text-align:center}
@@ -362,12 +385,10 @@ footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
   #musicToggle .mtxt{display:none}
   .brand .brole{display:none}
   nav a{padding:8px 10px;font-size:.85rem}
-  .portrait-wrap{width:118px;height:118px;margin:22px auto -59px}
-  .portrait-monogram{font-size:1.9rem}
-  .glass-card{padding:76px 20px 34px;border-radius:24px}
-  .gc-top .gc-role{font-size:.8rem}
-  .gc-top .gc-role strong{font-size:.88rem}
-  .gc-top .gc-create{font-size:.88rem}
+  .portrait-wrap{width:150px;height:150px;margin:26px auto -75px}
+  .portrait-monogram{font-size:2.4rem}
+  .glass-card{padding:98px 20px 36px;border-radius:24px}
+  .short-card{width:158px;padding:15px}
 }
 .reveal{opacity:0}
 @media (prefers-reduced-motion: reduce){
@@ -402,30 +423,17 @@ footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
 <main id="top">
   <!-- HERO -->
   <div class="hero wrap">
-    <p class="kicker reveal">Portfolio — 2026</p>
+    <div class="hero-glow" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="portrait-wrap reveal">
       <div class="portrait-ring"></div>
       <div class="portrait-monogram">AS</div>
       <img src="portrait.jpg" alt="Portrait of Aditya Sharma" onerror="this.remove()">
     </div>
     <div class="glass-card reveal">
-      <div class="gc-top">
-        <p class="gc-role"><strong>Video Editor</strong>&amp; Designer</p>
-        <a class="gc-create" href="#hire">Let's create →</a>
-      </div>
       <h1 id="heroName">Aditya <span class="accent">Sharma</span></h1>
-      <p class="role">Video Editor &amp; Designer</p>
-      <p class="intro">I design the <strong>click</strong>, cut the <strong>story</strong>, and build the <strong>systems</strong> behind content people actually finish watching. The films below are the portfolio — press play.</p>
       <div class="hero-ctas">
         <a class="btn" href="#hire">Hire me ↗</a>
         <a class="btn btn-ghost" href="#work">See my work</a>
-      </div>
-      <div class="chips">
-        <span class="chip">Thumbnails · Video Editing · YouTube SEO</span>
-        <span class="chip">Gen AI · AI Ads · UGC · AI Workflows</span>
-      </div>
-      <div class="avail-wrap">
-        <span class="avail-badge"><span class="dot" aria-hidden="true"></span>Available for new projects</span>
       </div>
     </div>
   </div>
@@ -504,6 +512,55 @@ footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
           <span class="wname">THUMBNAILS &amp; TRAILERS</span>
           <span class="soon">COMING SOON</span>
           <p class="work-hint">Coming soon — this reel isn't live yet. <a href="#hire">Start a project like this ↗</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHORT VIDEOS -->
+  <section id="shorts">
+    <div class="wrap">
+      <p class="sec-kicker reveal">Short Videos — Reels &amp; Shorts</p>
+      <h2 class="sec-title reveal">Short <span class="accent">Videos</span></h2>
+      <p class="sec-sub reveal">Vertical-first cuts for Reels, Shorts &amp; TikTok — <strong>a hook in the first second</strong>, made to be finished and shared. The first drops land here soon.</p>
+    </div>
+    <div class="shorts-viewport reveal">
+      <div class="shorts-track" id="shortsTrack">
+        <article class="short-card" aria-label="Instagram reel — coming soon">
+          <span class="play">▶</span>
+          <span class="slabel">Instagram · 9:16</span>
+          <span class="sname">REEL</span>
+          <span class="soon">COMING SOON</span>
+        </article>
+        <article class="short-card" aria-label="YouTube short — coming soon">
+          <span class="play">▶</span>
+          <span class="slabel">YouTube · 9:16</span>
+          <span class="sname">SHORT</span>
+          <span class="soon">COMING SOON</span>
+        </article>
+        <article class="short-card" aria-label="UGC clip — coming soon">
+          <span class="play">▶</span>
+          <span class="slabel">Brand · 9:16</span>
+          <span class="sname">UGC CLIP</span>
+          <span class="soon">COMING SOON</span>
+        </article>
+        <article class="short-card" aria-label="Creator reel — coming soon">
+          <span class="play">▶</span>
+          <span class="slabel">Instagram · 9:16</span>
+          <span class="sname">REEL</span>
+          <span class="soon">COMING SOON</span>
+        </article>
+        <article class="short-card" aria-label="TikTok short — coming soon">
+          <span class="play">▶</span>
+          <span class="slabel">TikTok · 9:16</span>
+          <span class="sname">SHORT</span>
+          <span class="soon">COMING SOON</span>
+        </article>
+        <article class="short-card" aria-label="AI short — coming soon">
+          <span class="play">▶</span>
+          <span class="slabel">Gen AI · 9:16</span>
+          <span class="sname">AI SHORT</span>
+          <span class="soon">COMING SOON</span>
         </article>
       </div>
     </div>
@@ -761,6 +818,21 @@ footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
   var track = document.getElementById('marqueeTrack');
   if (track) track.innerHTML += track.innerHTML;
 
+  /* short videos: duplicate the track for a seamless auto-slide loop;
+     pause the slide while the visitor is touching the strip */
+  var sTrack = document.getElementById('shortsTrack');
+  if (sTrack) {
+    var sHalf = sTrack.children.length;
+    sTrack.innerHTML += sTrack.innerHTML;
+    for (var si = sHalf; si < sTrack.children.length; si++) {
+      sTrack.children[si].setAttribute('aria-hidden', 'true');
+    }
+    var sView = sTrack.parentElement;
+    sView.addEventListener('touchstart', function(){ sTrack.style.animationPlayState = 'paused'; }, { passive: true });
+    sView.addEventListener('touchend', function(){ sTrack.style.animationPlayState = ''; }, { passive: true });
+    sView.addEventListener('touchcancel', function(){ sTrack.style.animationPlayState = ''; }, { passive: true });
+  }
+
   /* work slots: tap / Enter toggles the "coming soon" hint */
   document.querySelectorAll('.work-slot').forEach(function(slot){
     function toggle(e){
@@ -775,7 +847,7 @@ footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
 
   /* Aceternity-style spotlight tracking (services + work slots) */
   if (finePointer && !reduced) {
-    document.querySelectorAll('.svc, .work-slot').forEach(function(card){
+    document.querySelectorAll('.svc, .work-slot, .short-card').forEach(function(card){
       card.addEventListener('mousemove', function(e){
         var r = card.getBoundingClientRect();
         card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
