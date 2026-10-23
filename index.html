@@ -370,18 +370,68 @@ section{padding:74px 0 10px}
 .price.featured .btn{background:#fff;color:var(--wine);border-color:#fff}
 .price.featured .btn:hover{box-shadow:0 0 20px rgba(255,255,255,.5)}
 
-/* ---------- process ---------- */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:42px}
-.step{
-  border-radius:18px;padding:24px;
+/* ---------- process: animated journey (from hello to published) ---------- */
+#process .sec-kicker{font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace}
+.journey{position:relative;max-width:1020px;margin:52px auto 0}
+/* the path: dim track + bright red fill that draws itself as you scroll */
+.journey-line{position:absolute;left:50%;top:6px;bottom:6px;width:2px;transform:translateX(-50%);background:rgba(255,255,255,.10);border-radius:2px}
+.journey-fill{position:absolute;inset:0;background:linear-gradient(180deg,var(--wine-bright),var(--wine));border-radius:2px;transform:scaleY(0);transform-origin:top center}
+.journey-dot{
+  position:absolute;left:50%;top:0;width:13px;height:13px;border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--wine-bright);
+  box-shadow:0 0 14px rgba(238,65,86,.95),0 0 34px rgba(215,38,56,.55);
+}
+.jstep{position:relative;width:50%;padding:0 58px 46px 0}
+.jstep.alt{margin-left:50%;padding:0 0 46px 58px}
+.journey .jstep.final{padding-bottom:6px}
+.jbadge{
+  position:absolute;top:-4px;right:-29px;z-index:2;
+  width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:1.12rem;color:var(--ink);
+  background:linear-gradient(160deg,rgba(52,52,52,.92),rgba(30,30,30,.94));
+  border:2px solid rgba(255,255,255,.28);
+  box-shadow:0 10px 26px rgba(0,0,0,.45);
+  transition:background .35s ease,border-color .35s ease,color .35s ease,box-shadow .35s ease;
+}
+.jstep.alt .jbadge{right:auto;left:-29px}
+.jbadge.lit{
+  background:linear-gradient(150deg,var(--wine-bright),var(--wine));
+  border-color:rgba(255,255,255,.65);color:#fff;
+  box-shadow:0 0 0 5px rgba(215,38,56,.22),0 0 26px rgba(215,38,56,.6),0 12px 28px rgba(0,0,0,.45);
+}
+/* final step: soft pulse on the badge + a red glow on the card once reached */
+.jstep.final .jbadge.lit{animation:jb-pulse 2.2s ease-in-out infinite}
+@keyframes jb-pulse{
+  0%,100%{box-shadow:0 0 0 4px rgba(215,38,56,.28),0 0 22px rgba(215,38,56,.55),0 12px 28px rgba(0,0,0,.45)}
+  50%{box-shadow:0 0 0 11px rgba(215,38,56,.08),0 0 38px rgba(215,38,56,.85),0 12px 28px rgba(0,0,0,.45)}
+}
+.jcard{
+  border-radius:18px;padding:24px 26px;
   background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
   backdrop-filter:blur(12px) saturate(140%);-webkit-backdrop-filter:blur(12px) saturate(140%);
   border:1px solid var(--glass-brd);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.16),var(--shadow);
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
 }
-.step .n{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:900;font-size:1.9rem;color:var(--accent)}
-.step h3{font-size:1.2rem;margin-top:6px;color:#fff}
-.step p{font-size:.96rem;margin-top:8px;color:var(--ink-soft)}
+.jcard:hover{transform:translateY(-4px);border-color:rgba(238,65,86,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 26px rgba(215,38,56,.35),var(--shadow)}
+.jstep.final.done .jcard{border-color:rgba(238,65,86,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 34px rgba(215,38,56,.30),var(--shadow)}
+.jcard h3{font-size:1.22rem;color:#fff}
+.jcard p{font-size:.96rem;margin-top:8px;color:var(--ink-soft)}
+@media (max-width:719px){
+  .journey{margin-top:42px}
+  .journey-line{left:23px;transform:none}
+  .jstep,.jstep.alt{width:auto;margin-left:0;padding:0 0 34px 68px}
+  .journey .jstep.final{padding-bottom:6px}
+  .jbadge,.jstep.alt .jbadge{left:0;right:auto;width:48px;height:48px;font-size:1rem}
+  .jcard{padding:20px}
+}
+@media (prefers-reduced-motion: reduce){
+  .journey-fill{transform:scaleY(1)}
+  .journey-dot{display:none}
+  .jstep.final .jbadge.lit{animation:none}
+  .jcard,.jbadge{transition:none}
+}
 
 /* ---------- hire / footer ---------- */
 .hire{text-align:center}
@@ -935,14 +985,27 @@ footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
   <!-- HOW IT WORKS -->
   <section id="process">
     <div class="wrap">
-      <p class="sec-kicker reveal">How It Works — The Process</p>
+      <p class="sec-kicker reveal">FROM HELLO TO PUBLISHED</p>
       <h2 class="sec-title reveal">From hello to <span class="accent">published</span>.</h2>
       <p class="sec-sub reveal">Four steps, no friction. You bring the footage and the goal — <strong>I handle the rest</strong>.</p>
-      <div class="steps">
-        <div class="step reveal"><div class="n">01</div><h3>Say hello</h3><p>Tell me about your channel and your goals — what you make, who it's for, and where you want it to go.</p></div>
-        <div class="step reveal"><div class="n">02</div><h3>Paid trial</h3><p>One video at the trial rate, with a fast turnaround — so you can judge the work on your own footage, not on promises.</p></div>
-        <div class="step reveal"><div class="n">03</div><h3>Production</h3><p>Full edits, plus thumbnails and SEO as needed — the complete package, produced and ready to publish.</p></div>
-        <div class="step reveal"><div class="n">04</div><h3>Delivery &amp; revisions</h3><p>You get the final files, and we revise until you're happy. Then we do it again, better.</p></div>
+      <div class="journey" id="journey">
+        <div class="journey-line" aria-hidden="true"><span class="journey-fill" id="journeyFill"></span><span class="journey-dot" id="journeyDot"></span></div>
+        <div class="jstep">
+          <div class="jbadge" aria-hidden="true"><span class="jnum">01</span></div>
+          <div class="jcard"><h3>Say hello</h3><p>Tell me about your channel and your goals — what you make, who it's for, and where you want it to go.</p></div>
+        </div>
+        <div class="jstep alt">
+          <div class="jbadge" aria-hidden="true"><span class="jnum">02</span></div>
+          <div class="jcard"><h3>Paid trial</h3><p>One video at the trial rate, with a fast turnaround — so you can judge the work on your own footage, not on promises.</p></div>
+        </div>
+        <div class="jstep">
+          <div class="jbadge" aria-hidden="true"><span class="jnum">03</span></div>
+          <div class="jcard"><h3>Production</h3><p>Full edits, plus thumbnails and SEO as needed — the complete package, produced and ready to publish.</p></div>
+        </div>
+        <div class="jstep alt final">
+          <div class="jbadge" aria-hidden="true"><span class="jnum">04</span></div>
+          <div class="jcard"><h3>Delivery &amp; revisions</h3><p>You get the final files, and we revise until you're happy. Then we do it again, better.</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1217,6 +1280,59 @@ footer .fmeta{margin-top:26px;font-size:.85rem;color:rgba(255,255,255,.55)}
         scrollTrigger: { trigger: '#svcIndex', start: 'top 70%', end: 'bottom 60%', scrub: 0.3 }
       });
     }
+
+    /* Process journey: the red path draws itself as you scroll, glowing dot rides it */
+    var jFill = document.getElementById('journeyFill');
+    var jDot = document.getElementById('journeyDot');
+    if (jFill) {
+      gsap.fromTo(jFill, { scaleY: 0 }, {
+        scaleY: 1, ease: 'none',
+        scrollTrigger: {
+          trigger: '#journey', start: 'top 66%', end: 'bottom 58%', scrub: 0.3,
+          onUpdate: function(self){
+            if (jDot) jDot.style.top = (self.progress * 100) + '%';
+          }
+        }
+      });
+    }
+
+    /* Process journey: badges pop in (number ticks up), cards slide in from their side */
+    var jMobile = window.matchMedia('(max-width: 719px)').matches;
+    gsap.utils.toArray('.jstep').forEach(function(step){
+      var badge = step.querySelector('.jbadge');
+      var num = step.querySelector('.jnum');
+      var card = step.querySelector('.jcard');
+      if (badge) {
+        gsap.fromTo(badge, { scale: 0 }, {
+          scale: 1, duration: 0.55, ease: 'back.out(2.4)',
+          scrollTrigger: {
+            trigger: step, start: 'top 84%',
+            onEnter: function(){
+              badge.classList.add('lit');
+              if (step.classList.contains('final')) step.classList.add('done');
+              var target = num ? parseInt(num.textContent, 10) : 0;
+              if (num && target > 0) {
+                var tick = { v: 0 };
+                gsap.to(tick, {
+                  v: target, duration: 0.6, ease: 'power2.out',
+                  onUpdate: function(){
+                    num.textContent = ('0' + Math.round(tick.v)).slice(-2);
+                  }
+                });
+              }
+            }
+          }
+        });
+      }
+      if (card) {
+        var fx = jMobile ? 0 : (step.classList.contains('alt') ? 56 : -56);
+        var fy = jMobile ? 34 : 0;
+        gsap.fromTo(card, { x: fx, y: fy, opacity: 0 }, {
+          x: 0, y: 0, opacity: 1, duration: 0.85, ease: 'power3.out',
+          scrollTrigger: { trigger: step, start: 'top 86%' }
+        });
+      }
+    });
 
     /* Gentle parallax float on the portrait */
     gsap.to('.portrait-wrap', {
